@@ -3,7 +3,7 @@
     + Pose graph optimization module is based on [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM) paper
     + Loop-detection is based on radius search and ICP is used to calc matching
  
-+ Note : You can use Fast-LIO / Faster-LIO with PGO-Module in this package
++ Note : You can use FAST-LIO / Faster-LIO with PGO-Module in this package
 + Note2 : You can also use your LIO / LO algorithm with this PGO-Module using `git submodule add` your package in third_party
 
 <br>
@@ -30,7 +30,7 @@
     catkin build -DCMAKE_BUILD_TYPE=Release
     . devel/setup.bash
     ```
-+ If you want to run Fast-LIO (change config files in third_party/`FAST_LIO`)
++ If you want to run FAST-LIO (change config files in third_party/`FAST_LIO`)
     ```shell
     roslaunch pgo_module fast_lio_sam.launch lidar:=ouster
     roslaunch pgo_module fast_lio_sam.launch lidar:=velodyne
