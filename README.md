@@ -1,40 +1,10 @@
-# FAST-LIO-SAM
-+ This repository is a SLAM implementation combining [FAST-LIO2](https://github.com/hku-mars/FAST_LIO) with pose graph optimization and loop closing based on [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM) paper
+# PGO-Module
++ This repository is a Pose graph optimization module which is able to be combined with your LIO / LO algorithm
+    + Pose graph optimization module is based on [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM) paper
     + Loop-detection is based on radius search and ICP is used to calc matching
-+ Note: similar repositories already exist
-    + [FAST_LIO_LC](https://github.com/yanliang-wang/FAST_LIO_LC): FAST-LIO2 + SC-A-LOAM based SLAM
-    + [FAST_LIO_SLAM](https://github.com/gisbi-kim/FAST_LIO_SLAM): FAST-LIO2 + ScanContext based SLAM
-    + [FAST_LIO_SAM](https://github.com/kahowang/FAST_LIO_SAM): FAST-LIO2 + LIO-SAM
-+ Note2: main code (PGO) is modularized and hence can be combined with any other LIO / LO
-    + This repo is to learn GTSAM myself!
-    + and as GTSAM tutorial for beginners - [GTSAM 튜토리얼 한글 포스팅](https://engcang.github.io/2023/07/15/gtsam_tutorial.html)
-
-<p align="center">
-  <img src="imgs/fast1.png" height="300"/>
-  <img src="imgs/sam1.png" height="300"/>
-  <br>
-  <em>KITTI seq 05 top view - (left): FAST-LIO2 (right): FAST-LIO-SAM</em>
-</p>
-<p align="center">
-  <img src="imgs/fast2.png" width="600"/>
-  <img src="imgs/sam2.png" width="600"/>
-  <br>
-  <em>KITTI seq 05 side view - (top): FAST-LIO2 (bottom): FAST-LIO-SAM</em>
-</p>
-<p align="center">
-  <img src="imgs/traj.png" width="600"/>
-  <br>
-  <em>KITTI seq 05 trajectories - (blue): FAST-LIO2 (green): FAST-LIO-SAM</em>
-</p>
-
-<br>
-
  
-#### Note
-+ For better loop-detection and transform calculation, [FAST-LIO-SAM-QN](https://github.com/engcang/FAST-LIO-SAM-QN) is also coded and opened.
-    + It adopts [Quatro](https://github.com/url-kaist/Quatro) - fast, accurate and robust global registration which provides great initial guess of transform
-    + and [Nano-GICP](https://github.com/vectr-ucla/direct_lidar_odometry) - fast and accurate ICP combining [FastGICP](https://github.com/SMRT-AIST/fast_gicp) + [NanoFLANN](https://github.com/jlblancoc/nanoflann)
-
++ Note : You can use Fast-LIO / Faster-LIO with PGO-Module in this package
++ Note2 : You can also use your LIO / LO algorithm with this PGO-Module using `git submodule add` your package in third_party
 
 <br>
 
@@ -54,17 +24,34 @@
 + Get the code and build
     ```shell
     cd ~/your_workspace/src
-    git clone https://github.com/engcang/FAST-LIO-SAM --recursive
+    git clone https://github.com/leedaehan/PGO-Module.git --recursive
 
     cd ..
     catkin build -DCMAKE_BUILD_TYPE=Release
     . devel/setup.bash
     ```
-+ Then run (change config files in third_party/`FAST_LIO`)
++ If you want to run Fast-LIO (change config files in third_party/`FAST_LIO`)
     ```shell
-    roslaunch fast_lio_sam run.launch lidar:=ouster
-    roslaunch fast_lio_sam run.launch lidar:=velodyne
-    roslaunch fast_lio_sam run.launch lidar:=livox
+    roslaunch pgo_module fast_lio_sam.launch lidar:=ouster
+    roslaunch pgo_module fast_lio_sam.launch lidar:=velodyne
+    roslaunch pgo_module fast_lio_sam.launch lidar:=livox
+    ```
++ If you want to run Faster-LIO (change config files in third_party/`faster-lio`)
+    ```shell
+    roslaunch pgo_module faster_lio_sam.launch lidar:=ouster
+    roslaunch pgo_module faster_lio_sam.launch lidar:=velodyne
+    roslaunch pgo_module faster_lio_sam.launch lidar:=livox
+    roslaunch pgo_module faster_lio_sam.launch lidar:=hesai
+    ```
++ If you want to run your LIO / LO algorithm with PGO-Module
+    ```shell
+    cd ~/your_workspace/src/pgo_module
+    git submodule add <Your Github Repository URL> third_party/<Package name>
+    ```
+    For example
+    ```shell
+    cd ~/your_workspace/src/pgo_module
+    git submodule add https://github.com/username/mydependency.git third_party/mydependency
     ```
 
 <br>
