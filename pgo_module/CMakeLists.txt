@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.4)
-project(fast_lio_sam)
+project(pgo_module)
 
 ### set compiler
 set(CMAKE_BUILD_TYPE "Release")

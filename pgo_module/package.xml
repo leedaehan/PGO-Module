@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package>
-  <name>fast_lio_sam</name>
+  <name>pgo_module</name>
   <version>0.0.0</version>
 
   <description>
-    This is a SLAM implementation combining FAST-LIO2 with pose graph optimization and loop closing based on LIO-SAM paper to learn GTSAM for myself
+    Pose graph optimization module which is able to be combined with your LIO algorithm
   </description>
-  <maintainer email="eungchang_mason@kaist.ac.kr">Eungchang Mason Lee</maintainer>
+  <maintainer email="daehanlee@postech.ac.kr">Daehan Lee</maintainer>
 
   <license>BSD3</license>
   

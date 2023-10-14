@@ -4,12 +4,12 @@
 	<arg name="lidar" default="ouster" /> <!-- ouster, velodyne, livox -->
 
 	<!-- visualize -->
-	<node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz_lio" args="-d $(find fast_lio_sam)/config/lio_rviz.rviz" launch-prefix="nice"/>
-	<node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz_sam" args="-d $(find fast_lio_sam)/config/sam_rviz.rviz" launch-prefix="nice"/>
+	<node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz_lio" args="-d $(find pgo_module)/config/lio_rviz.rviz" launch-prefix="nice"/>
+	<node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz_sam" args="-d $(find pgo_module)/config/sam_rviz.rviz" launch-prefix="nice"/>
 	
 	<!-- run fast_lio_sam -->
-	<rosparam command="load" file="$(find fast_lio_sam)/config/config.yaml" />
-	<node pkg="fast_lio_sam" type="fast_lio_sam_node" name="fast_lio_sam_node" output="screen"/> 
+	<rosparam command="load" file="$(find pgo_module)/config/config.yaml" />
+	<node pkg="pgo_module" type="pgo_module_node" name="pgo_module_node" output="screen"/> 
 
 	<!-- run fast_lio -->
 	<include if="$(eval arg ('lidar') == 'ouster')" file="$(find fast_lio)/launch/mapping_ouster64.launch">

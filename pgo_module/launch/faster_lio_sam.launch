@@ -1,0 +1,28 @@
+<launch>
+
+	<arg name="rviz" default="true" />
+	<arg name="lidar" default="hesai" /> <!-- ouster, velodyne, livox, hesai -->
+
+	<!-- visualize -->
+	<node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz_lio" args="-d $(find pgo_module)/config/lio_rviz.rviz" launch-prefix="nice"/>
+	<node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz_sam" args="-d $(find pgo_module)/config/sam_rviz.rviz" launch-prefix="nice"/>
+	
+	<!-- run faster_lio_sam -->
+	<rosparam command="load" file="$(find pgo_module)/config/config.yaml" />
+	<node pkg="pgo_module" type="pgo_module_node" name="pgo_module_node" output="screen"/> 
+
+	<!-- run faster_lio -->
+	<include if="$(eval arg ('lidar') == 'ouster')" file="$(find faster_lio)/launch/mapping_ouster64.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'velodyne')" file="$(find faster_lio)/launch/mapping_velodyne.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'livox')" file="$(find faster_lio)/launch/mapping_avia.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'hesai')" file="$(find faster_lio)/launch/mapping_hesai.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+
+</launch>

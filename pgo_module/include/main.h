@@ -1,5 +1,5 @@
-#ifndef FAST_LIO_SAM_MAIN_H
-#define FAST_LIO_SAM_MAIN_H
+#ifndef PGO_MODULE_MAIN_H
+#define PGO_MODULE_MAIN_H
 
 ///// coded headers
 #include "utilities.h"

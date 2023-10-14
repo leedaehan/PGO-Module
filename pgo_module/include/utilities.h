@@ -1,5 +1,5 @@
-#ifndef FAST_LIO_SAM_UTILITY_H
-#define FAST_LIO_SAM_UTILITY_H
+#ifndef PGO_MODULE_UTILITY_H
+#define PGO_MODULE_UTILITY_H
 
 ///// common headers
 #include <string>
